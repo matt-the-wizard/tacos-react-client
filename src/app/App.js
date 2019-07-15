@@ -1,5 +1,5 @@
 import React from 'react';
-import Taco from './tacos/Taco';
+import Taco from '../tacos/Taco';
 import './App.css';
 
 function App() {
@@ -11,11 +11,13 @@ function App() {
         },
         {
             price: 2.05,
-            title: "Thai Chicken Taco"
+            title: "Thai Chicken Taco",
+            description: "Taco layered in peanut butter thai sauce with lettuce and grilled chicken"
         },
         {
             price: 1.85,
-            title: "Mexican Mole Taco"
+            title: "Mexican Mole Taco",
+            description: "Mexincan Mole sauce brings a spicy kick to this taco"
         }
     ];
 
