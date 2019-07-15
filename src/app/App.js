@@ -1,35 +1,59 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Taco from '../tacos/Taco';
 import './App.css';
+import PropTypes from "prop-types";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getTacos } from '../tacos/selectors';
 
-function App() {
-    const testData = [
-        {
-            price: 2.25,
-            title: "Bulgogi Korean Taco",
-            description: "Korean taco marinated in Bulgogi BBQ Sauce"
-        },
-        {
-            price: 2.05,
-            title: "Thai Chicken Taco",
-            description: "Taco layered in peanut butter thai sauce with lettuce and grilled chicken"
-        },
-        {
-            price: 1.85,
-            title: "Mexican Mole Taco",
-            description: "Mexincan Mole sauce brings a spicy kick to this taco"
-        }
-    ];
+class App extends Component {
+    render() {
+        const { tacos } = this.props;
 
-  return (
-    <div className="App">
-      <header className="App-header">
-          {testData.map((taco) =>
-            <Taco title={taco.title} price={taco.price} description={taco.description} />
-          )}
-      </header>
-    </div>
-  );
+        return (
+            <div className="App">
+                <header className="App-header">
+                    {tacos.map((taco) =>
+                        <Taco title={taco.title} price={taco.price} description={taco.description} />
+                    )}
+                </header>
+            </div>
+        )
+    }
 }
 
-export default App;
+App.propTypes = {
+    tacos: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.number,
+    }))
+};
+
+App.defaultProps = {
+    tacos: []
+};
+
+const mapStateToProps = (state) => {
+    return {
+        tacos: getTacos(state),
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+
+    }, dispatch);
+};
+
+const mergeProps = (stateProps, dispatchProps, props) => ({
+    ...props,
+    ...stateProps,
+    // someFunction: dispatchProps.someFunction
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+)(App);

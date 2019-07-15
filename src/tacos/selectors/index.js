@@ -1,0 +1,1 @@
+export const getTacos = state => state.TACOS.tacos;
