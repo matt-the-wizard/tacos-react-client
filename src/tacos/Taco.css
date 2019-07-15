@@ -1,0 +1,14 @@
+.Taco {
+}
+
+.Taco-Header {
+    text-align: left;
+}
+
+.Taco-Description {
+    border: 5px white;
+}
+
+.Taco-Price {
+    text-decoration: blink;
+}

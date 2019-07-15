@@ -1,23 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import Taco from './tacos/Taco';
 import './App.css';
 
 function App() {
+    const testData = [
+        {
+            price: 2.25,
+            title: "Bulgogi Korean Taco",
+            description: "Korean taco marinated in Bulgogi BBQ Sauce"
+        },
+        {
+            price: 2.05,
+            title: "Thai Chicken Taco"
+        },
+        {
+            price: 1.85,
+            title: "Mexican Mole Taco"
+        }
+    ];
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          {testData.map((taco) =>
+            <Taco title={taco.title} price={taco.price} description={taco.description} />
+          )}
       </header>
     </div>
   );
